@@ -1,7 +1,7 @@
 Miembros del Grupo:
-1. Anthony Márquez Camacho
-2. David Carrion Beniquez
-3. Estefania Torres Collado
-4. Christopher Vegerano Lopez
+1. Anthony Márquez Camacho: anthony.marquez@upr.edu
+2. David Carrión Beníquez: david.carrion@upr.edu
+3. Estefanía Torres Collado: estefania.torres1@upr.edu
+4. Christopher Vegerano López: christopher.vegerano@upr.edu
 
-Video de Fase 1: 
+Video de Fase 1: https://youtu.be/Vogf6cMRgPo
