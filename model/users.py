@@ -52,3 +52,4 @@ class UsersDAO:
         affected_rows = cursor.rowcount
         self.conn.commit()
         return affected_rows !=0
+        
