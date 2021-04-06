@@ -11,6 +11,7 @@ CORS(app)
 def pichonAzul():
     return 'Pichon Azul App'
 
+
 #User
 @app.route('/PichonAzul/users', methods=['GET', 'POST'])
 def handleUsers():
