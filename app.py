@@ -27,7 +27,7 @@ def handleUsers():
 @app.route('/PichonAzul/users/<int:uid>', methods=['GET', 'PUT', 'DELETE'])
 def handleUserById(uid):
     if request.method == 'GET':
-        return BaseUsers().getUserById(uid)
+        return BaseUsers().getUserById(uid=uid)
     elif  request.method == 'PUT':
         return BaseUsers().updateUser(uid, request.json)
     elif request.method == 'DELETE':

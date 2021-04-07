@@ -12,21 +12,25 @@ class BlocksDAO:
         cursor = self.conn.cursor()
         query = "select bid, registered_uid, blocked_uid from \"Blocks\" where registered_uid = %s;"
         cursor.execute(query, (r_uid,))
-        result = cursor.fetchone()
+        result = []
+        for row in cursor:
+            result.append(row)
         return result
 
     def getAllUsersBlockingId(self, b_uid):
         cursor = self.conn.cursor()
         query = "select bid, registered_uid, blocked_uid from \"Blocks\" where blocked_uid = %s;"
         cursor.execute(query, (b_uid,))
-        result = cursor.fetchone()
+        result = []
+        for row in cursor:
+            result.append(row)
         return result
 
     def blockUser(self, r_uid, b_uid):
         cursor = self.conn.cursor()
         query = "Select * from \"Blocks\" where registered_uid = %s and blocked_uid= %s;"
         cursor.execute(query, (r_uid, b_uid))
-        bid = cursor.fetchone()
+        bid = cursor.fetchone()[0]
         if(bid):
             query1 = "update \"Blocks\" set is_deleted = false where bid = %s;"
             cursor.execute(query1, (bid))
@@ -41,5 +45,5 @@ class BlocksDAO:
         cursor = self.conn.cursor()
         query = "update \"Blocks\" set is_deleted = true where registered_uid = %s and blocked_uid= %s returning bid;"
         cursor.execute(query, (r_uid, b_uid))
-        result = cursor.fetchone()
+        result = cursor.fetchone()[0]
         return result
