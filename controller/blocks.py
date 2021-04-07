@@ -1,3 +1,4 @@
+from re import error
 from flask import jsonify
 from model.blocks import BlocksDAO
 
@@ -35,6 +36,8 @@ class BaseBlocks:
 
     def blockUser(self, json, b_uid):
         r_uid = json['RegisteredUser']
+        if(r_uid == b_uid):
+            return jsonify("Users cannot block themselves."), 400
         dao = BlocksDAO()
         bid = dao.blockUser(r_uid, b_uid)
         result = self.build_block_attr_dict(bid)
