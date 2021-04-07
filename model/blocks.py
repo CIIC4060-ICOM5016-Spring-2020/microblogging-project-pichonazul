@@ -37,7 +37,7 @@ class BlocksDAO:
         else:
             query2 = "Insert into \"Blocks\" (registered_uid, blocked_uid) values (%s,%s) returning bid;"
             cursor.execute(query2, (r_uid, b_uid))
-            bid = cursor.fetchone()
+            bid = cursor.fetchone()[0]
         self.conn.commit()
         return bid
 
@@ -45,6 +45,6 @@ class BlocksDAO:
         cursor = self.conn.cursor()
         query = "update \"Blocks\" set is_deleted=true where registered_uid = %s and blocked_uid= %s returning bid;"
         cursor.execute(query, (r_uid, b_uid))
-        result = cursor.fetchone()
+        result = cursor.fetchone()[0]
         self.conn.commit()
         return result

@@ -11,10 +11,13 @@ CORS(app)
 
 @app.route('/')
 def pichonAzul():
+    return 'To access the app start with /PichonAzul'
+
+@app.route('/PichonAzul')
+def pichonAzulHome():
     return 'Pichon Azul App'
 
-
-#User
+#Users
 @app.route('/PichonAzul/users', methods=['GET', 'POST'])
 def handleUsers():
     if request.method == 'POST':
@@ -99,6 +102,10 @@ def unblockUser(uid):
         return BaseBlocks().unblockUser(request.json, b_uid=uid)
     else:
         return jsonify("Method Not Allowed"), 405
+
+#Follows
+
+#Likes
 
 if __name__ == '__main__':
     app.run()
