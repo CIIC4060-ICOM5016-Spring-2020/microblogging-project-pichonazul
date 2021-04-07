@@ -2,14 +2,17 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from controller.users import BaseUsers
 from controller.messages import BaseMsg
+from controller.blocks import BaseBlocks
 
 app = Flask(__name__)
+app
 #apply CORS
 CORS(app)
 
 @app.route('/')
 def pichonAzul():
     return 'Pichon Azul App'
+
 
 #User
 @app.route('/PichonAzul/users', methods=['GET', 'POST'])
@@ -24,7 +27,7 @@ def handleUsers():
 @app.route('/PichonAzul/users/<int:uid>', methods=['GET', 'PUT', 'DELETE'])
 def handleUserById(uid):
     if request.method == 'GET':
-        return BaseUsers().getUserById(uid)
+        return BaseUsers().getUserById(uid=uid)
     elif  request.method == 'PUT':
         return BaseUsers().updateUser(uid, request.json)
     elif request.method == 'DELETE':
@@ -68,6 +71,34 @@ def shareMessage():
     else:
         return jsonify("Method Not Allowed"), 405
 
+#Blocks
+@app.route('/PichonAzul/block/<int:uid>', methods=['POST'])
+def blockUser(uid):
+    if request.method == 'POST':
+        return BaseBlocks().blockUser(request.json, b_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/blockedby/<int:uid>', methods=['GET'])
+def getAllUsersBlockedById(uid):
+    if request.method == 'GET':
+        return BaseBlocks().getBlockedById(r_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/blocking/<int:uid>', methods=['GET'])
+def getUsersBlocking(uid):
+    if request.method == 'GET':
+        return BaseBlocks().getAllUsersBlockingId(b_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/unblock/<int:uid>', methods=['POST'])
+def unblockUser(uid):
+    if request.method == 'POST':
+        return BaseBlocks().unblockUser(request.json, b_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
 if __name__ == '__main__':
     app.run()
-    

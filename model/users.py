@@ -24,7 +24,7 @@ class UsersDAO:
     def getUserById(self, uid):
         cursor = self.conn.cursor()
         query = "select * from \"Users\" where uid = %s;"
-        cursor.execute(query, (uid))
+        cursor.execute(query, (uid,))
         result = cursor.fetchone()
         return result
     
