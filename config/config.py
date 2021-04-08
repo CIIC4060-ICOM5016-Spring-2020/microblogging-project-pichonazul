@@ -1,6 +1,7 @@
 DATABASE = {
-    'user': 'khzzekdzjcaevy',
-    'password': '66433b1ca5068ffd9dee8158ffb66ca9d4ae4779c76bb47b1cf5e8e7fa5f4aae',
-    'dbname': 'd4ir2kbtb7bta',
+    'host': 'ec2-34-233-0-64.compute-1.amazonaws.com',
+    'user': 'qxnzmozhofunpq',
+    'password': '2fcc078dcb79a138242190ef2becdf2241b919f495e0bff0561cba47112529dd',
+    'dbname': 'd5mdc734arlvfo',
     'dbport': 5432
 }
