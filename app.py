@@ -3,6 +3,7 @@ from flask_cors import CORS
 from controller.users import BaseUsers
 from controller.messages import BaseMsg
 from controller.blocks import BaseBlocks
+from controller.follows import BaseFollows
 
 app = Flask(__name__)
 app
@@ -104,6 +105,34 @@ def unblockUser(uid):
         return jsonify("Method Not Allowed"), 405
 
 #Follows
+
+@app.route('/PichonAzul/follow/<int:uid>', methods=['POST'])
+def followUser(uid):
+    if request.method == 'POST':
+        return BaseFollows().followUser(request.json, f_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/followedby/<int:uid>', methods=['GET'])
+def getAllUsersFollowedById(uid):
+    if request.method == 'GET':
+        return BaseFollows().getFollowedById(r_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/follows/<int:uid>', methods=['GET'])
+def getUsersFollowing(uid):
+    if request.method == 'GET':
+        return BaseFollows().getAllUsersFollowingId(f_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/unfollow/<int:uid>', methods=['POST'])
+def unfollowUser(uid):
+    if request.method == 'POST':
+        return BaseFollows().unfollowUser(request.json, f_uid=uid)
+    else:
+        return jsonify("Method Not Allowed"), 405
 
 #Likes
 
