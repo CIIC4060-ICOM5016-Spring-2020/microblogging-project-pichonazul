@@ -28,9 +28,9 @@ class FollowsDAO:
 
     def followUser(self, r_uid, f_uid):
         cursor = self.conn.cursor()
-        query = "Select * from \"Follows\" where uid = %s and followed_user= %s;"
+        query = "Select fid from \"Follows\" where uid = %s and followed_user= %s;"
         cursor.execute(query, (r_uid, f_uid))
-        fid = cursor.fetchone()
+        fid = cursor.fetchone()[0]
         if(fid):
             query1 = "update \"Follows\" set is_deleted = false where fid = %s;"
             cursor.execute(query1, (fid,))

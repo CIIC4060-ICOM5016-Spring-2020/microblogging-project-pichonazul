@@ -35,8 +35,6 @@ class BaseFollows:
 
     def followUser(self, json, f_uid):
         r_uid = json['RegisteredUser']
-  
-        print(r_uid)
         if(r_uid == f_uid):
             return jsonify("Users cannot follow themselves."), 400
         dao = FollowsDAO()
