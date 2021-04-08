@@ -34,12 +34,12 @@ class BaseLikes:
         return jsonify(result_list), 200
 
 
-    def likeMessage(self, json, l_mid):
-        r_uid = json['RegisteredUser']
+    def likeMessage(self, json, l_mid, uid):
+        uid = json['RegisteredUser']
         # if(r_uid == l_mid):
         #     return jsonify("Users cannot block themselves."), 400
         dao = LikesDAO()
-        lid = dao.likeMessage(r_uid, l_mid)
+        lid = dao.likeMessage(l_mid, uid)
         result = self.build_like_attr_dict(lid)
         return jsonify(result), 201
 
