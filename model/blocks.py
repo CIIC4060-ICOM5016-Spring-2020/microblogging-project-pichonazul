@@ -3,8 +3,8 @@ import psycopg2
 
 class BlocksDAO:
     def __init__(self):
-        connection_url = "dbname=%s user=%s password=%s port=%s host='ec2-52-45-73-150.compute-1.amazonaws.com'" %(DATABASE['dbname'], DATABASE['user'],
-                                                                  DATABASE['password'], DATABASE['dbport'])
+        connection_url = "dbname=%s user=%s password=%s port=%s host=%s" %(DATABASE['dbname'], DATABASE['user'],
+                                                                  DATABASE['password'], DATABASE['dbport'], DATABASE['host'])
         print("connection url:  ", connection_url)
         self.conn = psycopg2.connect(connection_url)
 
