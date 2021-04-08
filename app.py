@@ -4,6 +4,8 @@ from controller.users import BaseUsers
 from controller.messages import BaseMsg
 from controller.blocks import BaseBlocks
 from controller.follows import BaseFollows
+from controller.likes import BaseLikes
+
 
 app = Flask(__name__)
 app
@@ -136,5 +138,30 @@ def unfollowUser(uid):
 
 #Likes
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/PichonAzul/like/<int:mid>', methods=['POST'])
+def likeMessage(mid):
+    if request.method == 'POST':
+        return BaseLikes().likeMessage(request.json, l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/likedby/<int:mid>', methods=['GET'])
+def getAllLikesId(mid):
+    if request.method == 'GET':
+        return BaseLikes().getLikedById(l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/likes/<int:mid>', methods=['GET'])
+def getMessageLikes(mid):
+    if request.method == 'GET':
+        return BaseLikes().getAllLikesId(l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/unlike/<int:mid>', methods=['POST'])
+def unlikeMessage(mid):
+    if request.method == 'POST':
+        return BaseLikes().unlikeMessage(request.json, l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
