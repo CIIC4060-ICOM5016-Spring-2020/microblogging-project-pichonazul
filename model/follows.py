@@ -28,7 +28,7 @@ class FollowsDAO:
 
     def followUser(self, r_uid, f_uid):
         cursor = self.conn.cursor()
-        query = "Select fid from \"Follows\" where uid = %s and followed_user= %s;"
+        query = "Select fid from \"Follows\" where uid = %s not in (select uid from \"Blocks\") and followed_user= %s (select followed_user from \"Blocks\");"
         cursor.execute(query, (r_uid, f_uid))
         fid = cursor.fetchone()[0]
         if(fid):

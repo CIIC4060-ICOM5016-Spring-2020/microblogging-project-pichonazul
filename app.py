@@ -54,7 +54,7 @@ def handleMessageById(mid):
     else:
         return jsonify("Method Not Allowed"), 405
 
-@app.route('/PichonAzul/post', methods=['POST'])
+@app.route('/PichonAzul/posts', methods=['POST'])
 def postMessage():
     if request.method == 'POST':
         return BaseMsg().postMessage(request.json)
@@ -105,7 +105,6 @@ def unblockUser(uid):
         return jsonify("Method Not Allowed"), 405
 
 #Follows
-
 @app.route('/PichonAzul/follow/<int:uid>', methods=['POST'])
 def followUser(uid):
     if request.method == 'POST':
