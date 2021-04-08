@@ -6,8 +6,8 @@ class BaseLikes:
     def build_map_dict(self, row):
         result = {}
         result['lid'] = row[0]
-        result['registered_mid'] = row[1]
-        result['liked_mid'] = row[2]
+        result['mid'] = row[1]
+        result['uid'] = row[2]
         return result
 
     def build_like_attr_dict(self, lid):
@@ -34,10 +34,8 @@ class BaseLikes:
         return jsonify(result_list), 200
 
 
-    def likeMessage(self, json, l_mid, uid):
+    def likeMessage(self, json, l_mid):
         uid = json['RegisteredUser']
-        # if(r_uid == l_mid):
-        #     return jsonify("Users cannot block themselves."), 400
         dao = LikesDAO()
         lid = dao.likeMessage(l_mid, uid)
         result = self.build_like_attr_dict(lid)

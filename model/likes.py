@@ -26,17 +26,17 @@ class LikesDAO:
             result.append(row)
         return result
 
-    def likeMessage(self, r_uid, l_mid):
+    def likeMessage(self, l_mid, r_uid):
         cursor = self.conn.cursor()
         query = "Select * from \"Likes\" where mid = %s and uid= %s;"
-        cursor.execute(query, (r_uid, l_mid))
+        cursor.execute(query, (l_mid, r_uid))
         lid = cursor.fetchone()
         if(lid):
             query1 = "update \"Likes\" set is_deleted = false where lid = %s;"
             cursor.execute(query1, (lid))
         else:
             query2 = "Insert into \"Likes\" (mid, uid) values (%s,%s) returning lid;"
-            cursor.execute(query2, (r_uid, l_mid))
+            cursor.execute(query2, (l_mid, r_uid))
             lid = cursor.fetchone()[0]
         self.conn.commit()
         return lid
@@ -44,7 +44,7 @@ class LikesDAO:
     def unlikeMessage(self, r_uid, l_mid):
         cursor = self.conn.cursor()
         query = "update \"Likes\" set is_deleted=true where mid = %s and uid= %s returning lid;"
-        cursor.execute(query, (r_uid, l_mid))
+        cursor.execute(query, (l_mid, r_uid))
         result = cursor.fetchone()[0]
         self.conn.commit()
         return result

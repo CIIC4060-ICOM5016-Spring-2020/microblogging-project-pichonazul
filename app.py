@@ -145,21 +145,14 @@ def likeMessage(mid):
     else:
         return jsonify("Method Not Allowed"), 405
 
-@app.route('/PichonAzul/likedby/<int:mid>', methods=['GET'])
-def getAllLikesId(mid):
-    if request.method == 'GET':
-        return BaseLikes().getLikedById(l_mid=mid)
-    else:
-        return jsonify("Method Not Allowed"), 405
-
-@app.route('/PichonAzul/likes/<int:mid>', methods=['GET'])
+@app.route('/PichonAzul/liked/<int:mid>', methods=['GET'])
 def getMessageLikes(mid):
     if request.method == 'GET':
         return BaseLikes().getAllLikesId(l_mid=mid)
     else:
         return jsonify("Method Not Allowed"), 405
 
-@app.route('/PichonAzul/unlike/<int:mid>', methods=['POST'])
+@app.route('/PichonAzul/like/remove/<int:mid>', methods=['POST'])
 def unlikeMessage(mid):
     if request.method == 'POST':
         return BaseLikes().unlikeMessage(request.json, l_mid=mid)
