@@ -58,16 +58,16 @@ class BaseMsg:
             return jsonify(result), 200
     
     def postMessage(self, json):
-        uid = json['uid']
-        text = json['text']
+        uid = json['RegisteredUser']
+        text = json['Text']
         dao = MessagesDAO()
         mid = dao.postMessage(uid, text)
         result = self.build_post_attr_dict(uid, text)
         return jsonify(result), 201
     
     def replyMessage(self, json):
-        uid = json['uid']
-        text = json['text']
+        uid = json['RegisteredUser']
+        text = json['Text']
         mid = json['mid']
         dao = MessagesDAO()
         rid = dao.replyMessage(uid, text, mid)
@@ -75,11 +75,9 @@ class BaseMsg:
         return jsonify(result), 201
     
     def shareMessage(self, json):
-        uid = json['uid']
+        uid = json['RegisteredUser']
         mid = json['mid']
         dao = MessagesDAO()
         sid = dao.shareMessage(uid, mid)
         result = self.build_share_attr_dict(uid, mid)
         return jsonify(result), 201
-    
-    
