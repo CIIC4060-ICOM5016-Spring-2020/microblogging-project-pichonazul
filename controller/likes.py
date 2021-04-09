@@ -44,6 +44,6 @@ class BaseLikes:
     def unlikeMessage(self, json, l_mid):
         r_uid = json['RegisteredUser']
         dao = LikesDAO()
-        lid = dao.unlikeMessage(r_uid, l_mid)
+        lid = dao.unlikeMessage(l_mid, r_uid)
         result = self.build_like_attr_dict(lid)
         return jsonify(result), 201
