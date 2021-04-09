@@ -28,11 +28,11 @@ Rest API
     
     -Obtener mensaje por id: https://pichon-azul.herokuapp.com/PichonAzul/msg/id 
     
-    -Crear un nuevo mensaje: https://pichon-azul.herokuapp.com/PichonAzul/users/posts
+    -Crear un nuevo mensaje: https://pichon-azul.herokuapp.com/PichonAzul/posts
     
-    -Responder a un mensaje existente: https://pichon-azul.herokuapp.com/PichonAzul/users/reply
+    -Responder a un mensaje existente: https://pichon-azul.herokuapp.com/PichonAzul/reply
     
-    -Compartir un mensaje: https://pichon-azul.herokuapp.com/PichonAzul/users/share
+    -Compartir un mensaje: https://pichon-azul.herokuapp.com/PichonAzul/share
     
   3. Seguidores
   4. Me gusta
