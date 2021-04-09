@@ -4,6 +4,9 @@ from controller.users import BaseUsers
 from controller.messages import BaseMsg
 from controller.blocks import BaseBlocks
 from controller.follows import BaseFollows
+from controller.likes import BaseLikes
+from controller.dislikes import BaseDislikes
+
 
 app = Flask(__name__)
 app
@@ -135,5 +138,47 @@ def unfollowUser(uid):
 
 #Likes
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/PichonAzul/like/<int:mid>', methods=['POST'])
+def likeMessage(mid):
+    if request.method == 'POST':
+        return BaseLikes().likeMessage(request.json, l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/liked/<int:mid>', methods=['GET'])
+def getMessageLikes(mid):
+    if request.method == 'GET':
+        return BaseLikes().getAllLikesId(l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/like/remove/<int:mid>', methods=['POST'])
+def unlikeMessage(mid):
+    if request.method == 'POST':
+        return BaseLikes().unlikeMessage(request.json, l_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+
+#Dislikes
+
+@app.route('/PichonAzul/dislike/<int:mid>', methods=['POST'])
+def dislikeMessage(mid):
+    if request.method == 'POST':
+        return BaseDislikes().dislikeMessage(request.json, d_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/disliked/<int:mid>', methods=['GET'])
+def getMessageDislikes(mid):
+    if request.method == 'GET':
+        return BaseDislikes().getAllDislikesId(d_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
+
+@app.route('/PichonAzul/dislike/remove/<int:mid>', methods=['POST'])
+def undislikeMessage(mid):
+    if request.method == 'POST':
+        return BaseDislikes().undislikeMessage(request.json, d_mid=mid)
+    else:
+        return jsonify("Method Not Allowed"), 405
