@@ -36,16 +36,35 @@ class MessagesDAO:
     
     def replyMessage(self, uid, text, mid):
         cursor = self.conn.cursor()
-        query = "insert into \"Replies\" (uid, text, mid) values (%s,%s,%s) returning rid;"
-        cursor.execute(query, (uid, text, mid))
-        rid = cursor.fetchone()[0]
+        muid = "select uid from \"Messages\" where mid = %s;"
+        cursor.execute(muid, (mid,))
+        muid = cursor.fetchone()[0]
+        query2 = "select blocked_uid from \"Blocks\" where (is_deleted = false and blocked_uid = %s and registered_uid = %s);"
+        cursor.execute(query2, (uid, muid))
+        query2 = cursor.fetchone()
+        if(query2 == None):
+            query3 = "insert into \"Replies\" (uid, text, mid) values (%s,%s,%s) returning rid;"
+            cursor.execute(query3, (uid, text, mid))
+            rid = cursor.fetchone()[0]
+        else:
+            rid = {}
         self.conn.commit()
         return rid
+       
     
     def shareMessage(self, uid, mid):
-        cursor = self.conn.cursor()        
-        query = "insert into \"Shares\" (uid, mid) values (%s,%s) returning sid;"
-        cursor.execute(query, (uid, mid))
-        sid = cursor.fetchone()[0]
+        cursor = self.conn.cursor()
+        muid = "select uid from \"Messages\" where mid = %s;"
+        cursor.execute(muid, (mid,))
+        muid = cursor.fetchone()[0]
+        query2 = "select blocked_uid from \"Blocks\" where (is_deleted = false and blocked_uid = %s and registered_uid = %s);"
+        cursor.execute(query2, (uid, muid))
+        query2 = cursor.fetchone()
+        if(query2 == None):
+            query3 = "insert into \"Shares\" (uid, mid) values (%s,%s) returning sid;"
+            cursor.execute(query3, (uid, mid))
+            sid = cursor.fetchone()[0]
+        else:
+            sid = {}
         self.conn.commit()
         return sid

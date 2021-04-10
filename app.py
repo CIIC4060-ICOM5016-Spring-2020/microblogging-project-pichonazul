@@ -9,7 +9,6 @@ from controller.dislikes import BaseDislikes
 
 
 app = Flask(__name__)
-app
 #apply CORS
 CORS(app)
 
@@ -182,3 +181,6 @@ def undislikeMessage(mid):
         return BaseDislikes().undislikeMessage(request.json, d_mid=mid)
     else:
         return jsonify("Method Not Allowed"), 405
+
+if __name__ == '__main__':
+    app.run()
