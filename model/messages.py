@@ -47,7 +47,7 @@ class MessagesDAO:
             cursor.execute(query3, (uid, text, mid))
             rid = cursor.fetchone()[0]
         else:
-            rid = {}
+            rid = 0
         self.conn.commit()
         return rid
        
@@ -65,6 +65,7 @@ class MessagesDAO:
             cursor.execute(query3, (uid, mid))
             sid = cursor.fetchone()[0]
         else:
-            sid = {}
+            sid = 0
         self.conn.commit()
         return sid
+        

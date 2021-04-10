@@ -71,13 +71,19 @@ class BaseMsg:
         mid = json['mid']
         dao = MessagesDAO()
         rid = dao.replyMessage(uid, text, mid)
-        result = self.build_reply_attr_dict(uid, text, mid)
-        return jsonify(result), 201
+        if(rid == 0):
+            return "You can't reply, because you are blocked.", 401
+        else:
+            result = self.build_reply_attr_dict(uid, text, mid)
+            return jsonify(result), 201
     
     def shareMessage(self, json):
         uid = json['RegisteredUser']
         mid = json['mid']
         dao = MessagesDAO()
         sid = dao.shareMessage(uid, mid)
-        result = self.build_share_attr_dict(uid, mid)
-        return jsonify(result), 201
+        if(sid == 0):
+            return "You can't share, because you are blocked.", 401
+        else:
+            result = self.build_share_attr_dict(uid, mid)
+            return jsonify(result), 201
