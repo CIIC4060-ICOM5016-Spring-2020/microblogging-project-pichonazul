@@ -36,6 +36,20 @@ Rest API
     
   3. Seguidores
   4. Me gusta
+
+    -Obtener todos los likes por mensaje: https://pichon-azul.herokuapp.com/PichonAzul/liked/mid 
+    
+    -Crear un like al mensaje: https://pichon-azul.herokuapp.com/PichonAzul/like/mid
+    
+    -Remover like del mensaje: https://pichon-azul.herokuapp.com/PichonAzul/like/remove/mid
+    
   5. No me gusta
+
+    -Obtener todos los dislikes por mensaje: https://pichon-azul.herokuapp.com/PichonAzul/disliked/mid 
+    
+    -Crear un dislike al mensaje: https://pichon-azul.herokuapp.com/PichonAzul/dislike/mid
+    
+    -Remover dislike del mensaje: https://pichon-azul.herokuapp.com/PichonAzul/dislike/remove/mid
+    
   6. Bloqueos
    
