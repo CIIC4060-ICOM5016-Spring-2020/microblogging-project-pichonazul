@@ -16,17 +16,17 @@ Rest API
     
     -Crear nuevo usuario: https://pichon-azul.herokuapp.com/PichonAzul/users
     
-    -Obtener usuario por id: https://pichon-azul.herokuapp.com/PichonAzul/users/id 
+    -Obtener usuario por id: https://pichon-azul.herokuapp.com/PichonAzul/users/uid 
     
-    -Poner o cambiar informacion en usuario existente: https://pichon-azul.herokuapp.com/PichonAzul/users/id
+    -Poner o cambiar informacion en usuario existente: https://pichon-azul.herokuapp.com/PichonAzul/users/uid
     
-    -Borrar usuario: https://pichon-azul.herokuapp.com/PichonAzul/users/id 
+    -Borrar usuario: https://pichon-azul.herokuapp.com/PichonAzul/users/uid 
     
   2. Mensajes
   
     -Obtener todos los mensajes: https://pichon-azul.herokuapp.com/PichonAzul/msg
     
-    -Obtener mensaje por id: https://pichon-azul.herokuapp.com/PichonAzul/msg/id 
+    -Obtener mensaje por id: https://pichon-azul.herokuapp.com/PichonAzul/msg/mid 
     
     -Crear un nuevo mensaje: https://pichon-azul.herokuapp.com/PichonAzul/posts
     
@@ -36,13 +36,13 @@ Rest API
     
   3. Seguidores
 
-    -Seguir un usuario en específico: https://pichon-azul.herokuapp.com/PichonAzul/follow/id
+    -Seguir un usuario en específico: https://pichon-azul.herokuapp.com/PichonAzul/follow/fid
 
-    -Obtener todos los usuarios seguidos por un usuario: https://pichon-azul.herokuapp.com/PichonAzul/followedby/id
+    -Obtener todos los usuarios seguidos por un usuario: https://pichon-azul.herokuapp.com/PichonAzul/followedby/fid
 
-    -Obtener todos los usuarios que siguen a un usuario: https://pichon-azul.herokuapp.com/PichonAzul/follows/id
+    -Obtener todos los usuarios que siguen a un usuario: https://pichon-azul.herokuapp.com/PichonAzul/follows/fid
 
-    -Parar de seguir un usuario específico : https://pichon-azul.herokuapp.com/PichonAzul/unfollow/id
+    -Parar de seguir un usuario específico : https://pichon-azul.herokuapp.com/PichonAzul/unfollow/fid
 
   4. Me gusta
 
