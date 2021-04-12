@@ -28,16 +28,22 @@ class FollowsDAO:
 
     def followUser(self, r_uid, f_uid):
         cursor = self.conn.cursor()
-        query = "Select fid from \"Follows\" where uid = %s not in (select uid from \"Blocks\") and followed_user= %s (select followed_user from \"Blocks\");"
+        query = "Select * from \"Follows\" where uid = %s and followed_user= %s;"
         cursor.execute(query, (r_uid, f_uid))
         fid = cursor.fetchone()[0]
+        query2 = "select blocked_uid from \"Blocks\" where (is_deleted = false and blocked_uid = %s and registered_uid = %s);"
+        cursor.execute(query2, (r_uid, f_uid))
+        fid3 = cursor.fetchone()[0]
         if(fid):
             query1 = "update \"Follows\" set is_deleted = false where fid = %s;"
-            cursor.execute(query1, (fid,))
-        else:
+            cursor.execute(query1, (fid,))   
+        elif(fid3 == None):
             query2 = "Insert into \"Follows\" (uid, followed_user) values (%s,%s) returning fid;"
             cursor.execute(query2, (r_uid, f_uid))
             fid = cursor.fetchone()[0]
+        
+        else:
+            fid = 0
         self.conn.commit()
         return fid
 

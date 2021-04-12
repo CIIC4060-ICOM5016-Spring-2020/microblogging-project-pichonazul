@@ -30,10 +30,10 @@ class BlocksDAO:
         cursor = self.conn.cursor()
         query = "Select * from \"Blocks\" where registered_uid = %s and blocked_uid= %s;"
         cursor.execute(query, (r_uid, b_uid))
-        bid = cursor.fetchone()
+        bid = cursor.fetchone()[0]
         if(bid):
-            query1 = "update \"Blocks\" set is_deleted = false where bid = %s;"
-            cursor.execute(query1, (bid))
+            query1 = "update \"Blocks\" set is_deleted=false where bid = %s;"
+            cursor.execute(query1, (bid,))
         else:
             query2 = "Insert into \"Blocks\" (registered_uid, blocked_uid) values (%s,%s) returning bid;"
             cursor.execute(query2, (r_uid, b_uid))
