@@ -52,4 +52,12 @@ Rest API
     -Remover dislike del mensaje: https://pichon-azul.herokuapp.com/PichonAzul/dislike/remove/mid
     
   6. Bloqueos
+  
+    -El usuario registrado bloquea a un usuario:  https://pichon-azul.herokuapp.com/PichonAzul/block/uid
+    
+    -Obtener todos los usuarios blockeados por el id: https://pichon-azul.herokuapp.com/PichonAzul/blockedby/uid
+    
+    -Obtener todos los usuarios que blockean a un id en particular: https://pichon-azul.herokuapp.com/PichonAzul/blocking/uid
+    
+    -El usuario registrado desbloquea a un usuario: https://pichon-azul.herokuapp.com/PichonAzul/unblock/uid
    
