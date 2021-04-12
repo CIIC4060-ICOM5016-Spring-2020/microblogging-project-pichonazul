@@ -35,6 +35,15 @@ Rest API
     -Compartir un mensaje: https://pichon-azul.herokuapp.com/PichonAzul/share
     
   3. Seguidores
+
+    -Seguir un usuario en específico: https://pichon-azul.herokuapp.com/PichonAzul/follow/id
+
+    -Obtener todos los usuarios seguidos por un usuario: https://pichon-azul.herokuapp.com/PichonAzul/followedby/id
+
+    -Obtener todos los usuarios que siguen a un usuario: https://pichon-azul.herokuapp.com/PichonAzul/follows/id
+
+    -Parar de seguir un usuario específico : https://pichon-azul.herokuapp.com/PichonAzul/unfollow/id
+
   4. Me gusta
 
     -Obtener todos los likes por mensaje: https://pichon-azul.herokuapp.com/PichonAzul/liked/mid 

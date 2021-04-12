@@ -35,14 +35,15 @@ class BaseFollows:
 
     def followUser(self, json, f_uid):
         r_uid = json['RegisteredUser']
-  
-        print(r_uid)
-        if(r_uid == f_uid):
-            return jsonify("Users cannot follow themselves."), 400
         dao = FollowsDAO()
         fid = dao.followUser(r_uid, f_uid)
-        result = self.build_follow_attr_dict(fid)
-        return jsonify(result), 201
+        if(fid == 0):
+            return "You can't follow them, because you are blocked.", 401
+        else:
+            if(r_uid == f_uid):
+                return jsonify("Users cannot follow themselves."), 400
+            result = self.build_follow_attr_dict(fid)
+            return jsonify(result), 201
 
     def unfollowUser(self, json, f_uid):
         r_uid = json['RegisteredUser']
