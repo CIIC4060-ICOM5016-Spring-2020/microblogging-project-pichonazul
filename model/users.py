@@ -14,7 +14,7 @@ class UsersDAO:
 
     def getAllUsers(self):
         cursor = self.conn.cursor()
-        query = "select * from \"Users\ where is_deleted = false;"
+        query = "select * from \"Users\" where is_deleted = false;"
         cursor.execute(query)
         result = []
         for row in cursor:

@@ -21,7 +21,7 @@ class MessagesDAO:
 
     def getMessageById(self, mid):
         cursor = self.conn.cursor()
-        query = "select mid, uid, text, created_date, created_time from \"Messages\" where mid = %s and is_deleted = false;"
+        query = "select mid, uid, text, created_date, created_time from \"Messages\" where mid = %s and isdeleted = false;"
         cursor.execute(query, (mid,))
         result = cursor.fetchone()
         return result
