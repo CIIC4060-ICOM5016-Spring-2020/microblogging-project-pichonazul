@@ -14,7 +14,7 @@ class UsersDAO:
 
     def getAllUsers(self):
         cursor = self.conn.cursor()
-        query = "select * from \"Users\";"
+        query = "select * from \"Users\ where is_deleted = false;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -23,7 +23,7 @@ class UsersDAO:
 
     def getUserById(self, uid):
         cursor = self.conn.cursor()
-        query = "select * from \"Users\" where uid = %s;"
+        query = "select * from \"Users\" where uid = %s and is_deleted = false;"
         cursor.execute(query, (uid,))
         result = cursor.fetchone()
         return result
@@ -39,7 +39,7 @@ class UsersDAO:
 
     def updateUser(self, uid, first_name, last_name, username, password, email):
         cursor = self.conn.cursor()
-        query= "update \"Users\" set first_name=%s, last_name = %s, username=%s, password =%s, email=%s where uid=%s;"
+        query= "update \"Users\" set first_name=%s, last_name = %s, username=%s, password =%s, email=%s where uid=%s and is_deleted = false;"
         password = bcrypt.generate_password_hash(password).decode("utf-8")
         cursor.execute(query, (first_name, last_name, username, password, email, uid))
         self.conn.commit()
